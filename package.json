@@ -1,8 +1,8 @@
 {
   "name": "@nodebyte/games",
-  "private": true,
-  "version": "0.1.0",
   "description": "Standalone CI and validation helpers for NodeByte game recipes.",
+  "license": "AGPL-3.0-only",
+  "version": "0.1.0",
   "scripts": {
     "validate:recipes": "node scripts/validate-games.mjs",
     "fmt": "deno fmt",
