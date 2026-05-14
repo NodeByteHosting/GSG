@@ -9,8 +9,7 @@ const buildCompose = (config: ComposeConfig, raw: unknown): string =>
 
 export const terraria = {
   buildCompose,
-  description:
-    "Dig, fight, explore, build! Nothing is impossible in this 2D adventure game.",
+  description: "Dig, fight, explore, build! Nothing is impossible in this 2D adventure game.",
   dockerImage,
   enabled: true,
   gamedigId: "terrariatshock",

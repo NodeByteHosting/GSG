@@ -18,7 +18,8 @@ export const gmodSettings = defineSettings({
   },
   luaRefresh: {
     default: false,
-    help: "Enables Lua auto-refresh. Useful for development but has a performance impact in production.",
+    help:
+      "Enables Lua auto-refresh. Useful for development but has a performance impact in production.",
     label: "Lua auto-refresh",
     type: "boolean",
   },
@@ -44,7 +45,8 @@ export const gmodSettings = defineSettings({
   },
   steamToken: {
     default: "",
-    help: "Steam Game Server Login Token (GSLT). Required for public servers — get one at steamcommunity.com/dev/managegameservers (App ID 4000).",
+    help:
+      "Steam Game Server Login Token (GSLT). Required for public servers — get one at steamcommunity.com/dev/managegameservers (App ID 4000).",
     label: "Steam GSLT",
     maxLength: 64,
     type: "string",
@@ -59,7 +61,8 @@ export const gmodSettings = defineSettings({
   },
   workshopId: {
     default: "",
-    help: "Steam Workshop collection ID to automatically download addons from. Leave blank to disable.",
+    help:
+      "Steam Workshop collection ID to automatically download addons from. Leave blank to disable.",
     label: "Workshop collection ID",
     type: "string",
   },

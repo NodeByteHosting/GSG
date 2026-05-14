@@ -36,15 +36,9 @@ export const games = [
 
 export type Game = (typeof games)[number];
 
-export const getGame = (id: string): Game | undefined =>
-  games.find((g) => g.id === id);
+export const getGame = (id: string): Game | undefined => games.find((g) => g.id === id);
 
-export {
-  type ComposeConfig,
-  type GamePort,
-  buildUfwRules,
-  GAME_CONTAINER_NAME,
-} from "./compose";
+export { buildUfwRules, type ComposeConfig, GAME_CONTAINER_NAME, type GamePort } from "./compose";
 export {
   defineSettings,
   getDefaults,

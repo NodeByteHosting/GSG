@@ -17,14 +17,6 @@ function read(path) {
   return readFileSync(path, "utf8");
 }
 
-function isDirectory(path) {
-  try {
-    return statSync(path).isDirectory();
-  } catch {
-    return false;
-  }
-}
-
 function isFile(path) {
   try {
     return statSync(path).isFile();
@@ -175,12 +167,16 @@ function main() {
 
   for (const [dirName, symbol] of imports.entries()) {
     if (!gameDirs.includes(dirName)) {
-      fail(`games/index.ts imports ./${dirName}, but no recipe files were detected in that directory`);
+      fail(
+        `games/index.ts imports ./${dirName}, but no recipe files were detected in that directory`,
+      );
       continue;
     }
 
     if (!gameSymbols.has(symbol)) {
-      fail(`games/index.ts imports '${symbol}' from ./${dirName} but does not include it in games array`);
+      fail(
+        `games/index.ts imports '${symbol}' from ./${dirName} but does not include it in games array`,
+      );
     }
   }
 

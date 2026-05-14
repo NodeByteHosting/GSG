@@ -15,6 +15,9 @@
   },
   "lint": {
     "rules": {
+      "exclude": [
+        "no-process-global"
+      ],
       "tags": [
         "recommended"
       ]

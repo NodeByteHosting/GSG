@@ -9,14 +9,6 @@ const ROOT_TS = ["index.ts", "compose.ts", "settings.ts", "steam.ts"];
 const RECIPE_FILES = ["index.ts", "install.ts", "settings.ts"];
 const IGNORE = new Set([".git", ".github", "scripts"]);
 
-function isDir(path) {
-  try {
-    return statSync(path).isDirectory();
-  } catch {
-    return false;
-  }
-}
-
 function isFile(path) {
   try {
     return statSync(path).isFile();

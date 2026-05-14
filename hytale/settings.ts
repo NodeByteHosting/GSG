@@ -15,7 +15,8 @@ export const hytaleSettings = defineSettings({
   },
   authMode: {
     default: "authenticated",
-    help: "authenticated requires a valid Hytale account. offline disables account verification. insecure disables all authentication.",
+    help:
+      "authenticated requires a valid Hytale account. offline disables account verification. insecure disables all authentication.",
     label: "Authentication mode",
     options: [
       { label: "Authenticated", value: "authenticated" },
@@ -26,7 +27,8 @@ export const hytaleSettings = defineSettings({
   },
   disableSentry: {
     default: false,
-    help: "Disable Hytale's built-in Sentry crash reporting. Recommended during active plugin development.",
+    help:
+      "Disable Hytale's built-in Sentry crash reporting. Recommended during active plugin development.",
     label: "Disable Sentry",
     type: "boolean",
   },
@@ -50,7 +52,8 @@ export const hytaleSettings = defineSettings({
   },
   useAotCache: {
     default: true,
-    help: "Use the pre-trained Ahead-of-Time Java cache to significantly improve server boot times.",
+    help:
+      "Use the pre-trained Ahead-of-Time Java cache to significantly improve server boot times.",
     label: "Use AOT cache",
     type: "boolean",
   },
