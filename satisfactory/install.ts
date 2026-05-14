@@ -6,7 +6,7 @@ export const dockerImage = "wolveix/satisfactory-server:v1.9.10";
 
 export const buildSatisfactoryCompose = (
   config: ComposeConfig,
-  settings: SatisfactorySettings,
+  settings: SatisfactorySettings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

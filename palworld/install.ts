@@ -6,11 +6,12 @@ export const dockerImage = "thijsvanloef/palworld-server-docker:latest";
 
 export const buildPalworldCompose = (
   config: ComposeConfig,
-  settings: PalworldSettings,
+  settings: PalworldSettings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;
-  const description = settings.description || `${config.name} - Powered by NodeByte`;
+  const description =
+    settings.description || `${config.name} - Powered by NodeByte`;
   return `services:
   palworld:
     image: ${dockerImage}

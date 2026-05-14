@@ -8,24 +8,22 @@ const ROOT = process.cwd();
 const REQUIRED_FILES = ["index.ts", "install.ts", "settings.ts"];
 const IGNORED_DIRS = new Set([".git", ".github", "scripts"]);
 
-function fail(message) {
+const fail = (message) => {
   console.error(`ERROR: ${message}`);
   process.exitCode = 1;
-}
+};
 
-function read(path) {
-  return readFileSync(path, "utf8");
-}
+const read = (path) => readFileSync(path, "utf-8");
 
-function isFile(path) {
+const isFile = (path) => {
   try {
     return statSync(path).isFile();
   } catch {
     return false;
   }
-}
+};
 
-function getCandidateGameDirs() {
+const getCandidateGameDirs = () => {
   const entries = readdirSync(ROOT, { withFileTypes: true });
   const dirs = [];
 
@@ -51,11 +49,12 @@ function getCandidateGameDirs() {
     }
   }
 
-  return dirs.sort();
-}
+  return dirs.toSorted();
+};
 
-function parseRootImports(indexSource) {
-  const importRegex = /import\s+\{\s*([a-zA-Z0-9_]+)\s*\}\s+from\s+"\.\/([a-z0-9-]+)";/g;
+const parseRootImports = (indexSource) => {
+  const importRegex =
+    /import\s+\{\s*([a-zA-Z0-9_]+)\s*\}\s+from\s+"\.\/([a-z0-9-]+)";/gu;
   const imports = new Map();
   let match;
 
@@ -64,10 +63,12 @@ function parseRootImports(indexSource) {
   }
 
   return imports;
-}
+};
 
-function parseGamesArraySymbols(indexSource) {
-  const arrayMatch = indexSource.match(/export const games = \[([\s\S]*?)\];/m);
+const parseGamesArraySymbols = (indexSource) => {
+  const arrayMatch = indexSource.match(
+    /export const games = \[([\s\S]*?)\];/mu
+  );
   if (!arrayMatch) {
     fail("games/index.ts must export `games` array.");
     return [];
@@ -77,41 +78,47 @@ function parseGamesArraySymbols(indexSource) {
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean)
-    .map((s) => s.replace(/\s*\/\/.*$/, ""))
+    .map((s) => s.replace(/\s*\/\/.*$/u, ""))
     .map((s) => s.trim())
     .filter(Boolean);
-}
+};
 
-function parseRecipeId(recipeIndexSource) {
-  const match = recipeIndexSource.match(/\bid\s*:\s*"([a-z0-9-]+)"/);
+const parseRecipeId = (recipeIndexSource) => {
+  const match = recipeIndexSource.match(/\bid\s*:\s*"([a-z0-9-]+)"/u);
   return match ? match[1] : null;
-}
+};
 
-function validateRecipeShape(gameDir, recipeIndexSource) {
+const validateRecipeShape = (gameDir, recipeIndexSource) => {
   const requiredMarkers = [
-    /\bname\s*:/,
-    /\bdescription\s*:/,
-    /\benabled\s*:/,
-    /\bbuildCompose\b/,
-    /\bdockerImage\b/,
-    /\bports\s*:/,
-    /\brequirements\s*:/,
-    /\bsettings\s*:/,
+    /\bname\s*:/u,
+    /\bdescription\s*:/u,
+    /\benabled\s*:/u,
+    /\bbuildCompose\b/u,
+    /\bdockerImage\b/u,
+    /\bports\s*:/u,
+    /\brequirements\s*:/u,
+    /\bsettings\s*:/u,
   ];
 
   for (const marker of requiredMarkers) {
     if (!marker.test(recipeIndexSource)) {
-      fail(`${gameDir}/index.ts is missing expected recipe field matching ${marker}`);
+      fail(
+        `${gameDir}/index.ts is missing expected recipe field matching ${marker}`
+      );
     }
   }
-}
+};
 
-function main() {
+const main = () => {
   const rootIndexPath = join(ROOT, "index.ts");
   const rootSettingsPath = join(ROOT, "settings.ts");
   const rootComposePath = join(ROOT, "compose.ts");
 
-  for (const requiredRootFile of [rootIndexPath, rootSettingsPath, rootComposePath]) {
+  for (const requiredRootFile of [
+    rootIndexPath,
+    rootSettingsPath,
+    rootComposePath,
+  ]) {
     if (!isFile(requiredRootFile)) {
       fail(`Missing required root file: ${requiredRootFile}`);
     }
@@ -142,41 +149,45 @@ function main() {
     validateRecipeShape(gameDir, recipeIndexSource);
 
     const recipeId = parseRecipeId(recipeIndexSource);
-    if (!recipeId) {
-      fail(`${gameDir}/index.ts is missing literal id value`);
-    } else {
+    if (recipeId) {
       if (recipeId !== gameDir) {
-        fail(`${gameDir}/index.ts id '${recipeId}' must match directory name '${gameDir}'`);
+        fail(
+          `${gameDir}/index.ts id '${recipeId}' must match directory name '${gameDir}'`
+        );
       }
       if (seenIds.has(recipeId)) {
         fail(`Duplicate game id '${recipeId}'`);
       }
       seenIds.add(recipeId);
+    } else {
+      fail(`${gameDir}/index.ts is missing literal id value`);
     }
 
     const importedSymbol = imports.get(gameDir);
-    if (!importedSymbol) {
+    if (importedSymbol) {
+      if (!gameSymbols.has(importedSymbol)) {
+        fail(
+          `games/index.ts games array is missing symbol '${importedSymbol}' for ./${gameDir}`
+        );
+      }
+    } else {
       fail(`games/index.ts is missing import for ./${gameDir}`);
       continue;
-    }
-
-    if (!gameSymbols.has(importedSymbol)) {
-      fail(`games/index.ts games array is missing symbol '${importedSymbol}' for ./${gameDir}`);
     }
   }
 
   for (const [dirName, symbol] of imports.entries()) {
-    if (!gameDirs.includes(dirName)) {
+    if (gameDirs.includes(dirName)) {
+      if (!gameSymbols.has(symbol)) {
+        fail(
+          `games/index.ts imports '${symbol}' from ./${dirName} but does not include it in games array`
+        );
+      }
+    } else {
       fail(
-        `games/index.ts imports ./${dirName}, but no recipe files were detected in that directory`,
+        `games/index.ts imports ./${dirName}, but no recipe files were detected in that directory`
       );
       continue;
-    }
-
-    if (!gameSymbols.has(symbol)) {
-      fail(
-        `games/index.ts imports '${symbol}' from ./${dirName} but does not include it in games array`,
-      );
     }
   }
 
@@ -185,6 +196,6 @@ function main() {
   }
 
   console.log(`OK: validated ${gameDirs.length} game recipes`);
-}
+};
 
 main();

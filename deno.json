@@ -4,31 +4,15 @@
     "indentWidth": 2,
     "semiColons": true,
     "singleQuote": false,
-    "include": [
-      "**/*.ts",
-      "scripts/**/*.mjs"
-    ],
-    "exclude": [
-      ".git/**",
-      ".github/**"
-    ]
+    "include": ["**/*.ts", "scripts/**/*.mjs"],
+    "exclude": [".git/**", ".github/**"]
   },
   "lint": {
     "rules": {
-      "exclude": [
-        "no-process-global"
-      ],
-      "tags": [
-        "recommended"
-      ]
+      "exclude": ["no-process-global"],
+      "tags": ["recommended"]
     },
-    "include": [
-      "**/*.ts",
-      "scripts/**/*.mjs"
-    ],
-    "exclude": [
-      ".git/**",
-      ".github/**"
-    ]
+    "include": ["**/*.ts", "scripts/**/*.mjs"],
+    "exclude": [".git/**", ".github/**"]
   }
 }

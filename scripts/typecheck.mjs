@@ -1,21 +1,21 @@
 #!/usr/bin/env node
 
+import { spawnSync } from "node:child_process";
 import { readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { spawnSync } from "node:child_process";
 
 const ROOT = process.cwd();
 const ROOT_TS = ["index.ts", "compose.ts", "settings.ts", "steam.ts"];
 const RECIPE_FILES = ["index.ts", "install.ts", "settings.ts"];
 const IGNORE = new Set([".git", ".github", "scripts"]);
 
-function isFile(path) {
+const isFile = (path) => {
   try {
     return statSync(path).isFile();
   } catch {
     return false;
   }
-}
+};
 
 const files = [];
 
@@ -51,8 +51,8 @@ if (files.length === 0) {
 
 const result = spawnSync("deno", ["check", "--sloppy-imports", ...files], {
   cwd: ROOT,
-  stdio: "inherit",
   shell: false,
+  stdio: "inherit",
 });
 
 process.exit(result.status ?? 1);
