@@ -57,7 +57,7 @@ if (files.length === 0) {
   process.exit(1);
 }
 
-const result = spawnSync("deno", ["check", ...files], {
+const result = spawnSync("deno", ["check", "--sloppy-imports", ...files], {
   cwd: ROOT,
   stdio: "inherit",
   shell: false,

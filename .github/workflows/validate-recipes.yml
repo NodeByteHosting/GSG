@@ -62,5 +62,5 @@ jobs:
       - name: Type-check TypeScript files
         run: |
           FILES=$(find . -maxdepth 2 -type f -name "*.ts" | tr '\n' ' ')
-          deno check $FILES
+          deno check --sloppy-imports $FILES
         working-directory: .
