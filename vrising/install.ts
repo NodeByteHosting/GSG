@@ -6,7 +6,7 @@ export const dockerImage = "trueosiris/vrising:latest";
 
 export const buildVrisingCompose = (
   config: ComposeConfig,
-  settings: VrisingSettings
+  settings: VrisingSettings,
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

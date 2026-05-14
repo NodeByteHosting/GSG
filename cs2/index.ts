@@ -9,8 +9,7 @@ const buildCompose = (config: ComposeConfig, raw: unknown): string =>
 
 export const cs2 = {
   buildCompose,
-  description:
-    "The legendary tactical FPS. Plant the bomb, defuse it, or just frag your friends.",
+  description: "The legendary tactical FPS. Plant the bomb, defuse it, or just frag your friends.",
   dockerImage,
   enabled: true,
   gamedigId: "cs2",

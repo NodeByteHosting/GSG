@@ -14,7 +14,7 @@ const yamlBlock = (lines: string[], indent = 10) =>
 
 export const buildFivemCompose = (
   config: ComposeConfig,
-  settings: FivemSettings
+  settings: FivemSettings,
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;
@@ -75,9 +75,7 @@ export const buildFivemCompose = (
   // When txAdmin is disabled, +exec server.cfg is passed so the server reads
   // configuration on startup. When txAdmin is enabled, txAdmin handles that
   // itself — omitting +exec server.cfg lets txAdmin take over.
-  const noTxAdminSuffix = settings.enableTxAdmin
-    ? ""
-    : " \\\n  +exec server.cfg";
+  const noTxAdminSuffix = settings.enableTxAdmin ? "" : " \\\n  +exec server.cfg";
   const startupLines = [
     `exec ${DATA}/alpine/opt/cfx-server/ld-musl-x86_64.so.1 \\`,
     `  --library-path "${DATA}/alpine/usr/lib/v8/:${DATA}/alpine/lib/:${DATA}/alpine/usr/lib/" \\`,
@@ -92,16 +90,14 @@ export const buildFivemCompose = (
   // txAdmin requires its own port and additional env vars.
   const txAdminEnvLines = settings.enableTxAdmin
     ? [
-        `      TXADMIN_ENABLE: "1"`,
-        `      TXHOST_GAME_NAME: "fivem"`,
-        `      TXHOST_TXA_PORT: "40120"`,
-        `      TXHOST_DATA_PATH: "${DATA}/txData"`,
-      ].join("\n")
+      `      TXADMIN_ENABLE: "1"`,
+      `      TXHOST_GAME_NAME: "fivem"`,
+      `      TXHOST_TXA_PORT: "40120"`,
+      `      TXHOST_DATA_PATH: "${DATA}/txData"`,
+    ].join("\n")
     : `      TXADMIN_ENABLE: "0"`;
 
-  const txAdminPort = settings.enableTxAdmin
-    ? `\n      - "40120:40120/tcp"`
-    : "";
+  const txAdminPort = settings.enableTxAdmin ? `\n      - "40120:40120/tcp"` : "";
 
   return `services:
   # Bootstrap: downloads FXServer + cfx-server-data on first deploy.

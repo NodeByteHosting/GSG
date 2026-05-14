@@ -53,8 +53,7 @@ const getCandidateGameDirs = () => {
 };
 
 const parseRootImports = (indexSource) => {
-  const importRegex =
-    /import\s+\{\s*([a-zA-Z0-9_]+)\s*\}\s+from\s+"\.\/([a-z0-9-]+)";/gu;
+  const importRegex = /import\s+\{\s*([a-zA-Z0-9_]+)\s*\}\s+from\s+"\.\/([a-z0-9-]+)";/gu;
   const imports = new Map();
   let match;
 
@@ -67,7 +66,7 @@ const parseRootImports = (indexSource) => {
 
 const parseGamesArraySymbols = (indexSource) => {
   const arrayMatch = indexSource.match(
-    /export const games = \[([\s\S]*?)\];/mu
+    /export const games = \[([\s\S]*?)\];/mu,
   );
   if (!arrayMatch) {
     fail("games/index.ts must export `games` array.");
@@ -103,7 +102,7 @@ const validateRecipeShape = (gameDir, recipeIndexSource) => {
   for (const marker of requiredMarkers) {
     if (!marker.test(recipeIndexSource)) {
       fail(
-        `${gameDir}/index.ts is missing expected recipe field matching ${marker}`
+        `${gameDir}/index.ts is missing expected recipe field matching ${marker}`,
       );
     }
   }
@@ -114,11 +113,13 @@ const main = () => {
   const rootSettingsPath = join(ROOT, "settings.ts");
   const rootComposePath = join(ROOT, "compose.ts");
 
-  for (const requiredRootFile of [
-    rootIndexPath,
-    rootSettingsPath,
-    rootComposePath,
-  ]) {
+  for (
+    const requiredRootFile of [
+      rootIndexPath,
+      rootSettingsPath,
+      rootComposePath,
+    ]
+  ) {
     if (!isFile(requiredRootFile)) {
       fail(`Missing required root file: ${requiredRootFile}`);
     }
@@ -152,7 +153,7 @@ const main = () => {
     if (recipeId) {
       if (recipeId !== gameDir) {
         fail(
-          `${gameDir}/index.ts id '${recipeId}' must match directory name '${gameDir}'`
+          `${gameDir}/index.ts id '${recipeId}' must match directory name '${gameDir}'`,
         );
       }
       if (seenIds.has(recipeId)) {
@@ -167,7 +168,7 @@ const main = () => {
     if (importedSymbol) {
       if (!gameSymbols.has(importedSymbol)) {
         fail(
-          `games/index.ts games array is missing symbol '${importedSymbol}' for ./${gameDir}`
+          `games/index.ts games array is missing symbol '${importedSymbol}' for ./${gameDir}`,
         );
       }
     } else {
@@ -180,12 +181,12 @@ const main = () => {
     if (gameDirs.includes(dirName)) {
       if (!gameSymbols.has(symbol)) {
         fail(
-          `games/index.ts imports '${symbol}' from ./${dirName} but does not include it in games array`
+          `games/index.ts imports '${symbol}' from ./${dirName} but does not include it in games array`,
         );
       }
     } else {
       fail(
-        `games/index.ts imports ./${dirName}, but no recipe files were detected in that directory`
+        `games/index.ts imports ./${dirName}, but no recipe files were detected in that directory`,
       );
       continue;
     }

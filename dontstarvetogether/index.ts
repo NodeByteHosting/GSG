@@ -7,7 +7,7 @@ import { dontStarveTogetherSettings } from "./settings";
 const buildCompose = (config: ComposeConfig, raw: unknown): string =>
   buildDontStarveTogetherCompose(
     config,
-    resolveSettings(dontStarveTogetherSettings, raw)
+    resolveSettings(dontStarveTogetherSettings, raw),
   );
 
 export const dontStarveTogether = {

@@ -6,7 +6,7 @@ export const dockerImage = "left4devops/l4d2:latest";
 
 export const buildL4d2Compose = (
   config: ComposeConfig,
-  settings: L4d2Settings
+  settings: L4d2Settings,
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;
