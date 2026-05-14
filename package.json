@@ -1,0 +1,14 @@
+{
+  "name": "@nodebyte/games",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Standalone CI and validation helpers for NodeByte game recipes.",
+  "scripts": {
+    "validate:recipes": "node scripts/validate-games.mjs",
+    "fmt": "deno fmt",
+    "fmt:check": "deno fmt --check",
+    "lint": "deno lint",
+    "typecheck": "node scripts/typecheck.mjs",
+    "ci": "npm run fmt:check && npm run lint && npm run validate:recipes && npm run typecheck"
+  }
+}
