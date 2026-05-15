@@ -32,8 +32,7 @@ export const minecraftSettings = defineSettings({
   },
   minecraftVersion: {
     default: "LATEST",
-    help:
-      "Minecraft version to run, e.g. 1.21.4. Leave as LATEST to always use the newest release.",
+    help: "Minecraft version to run, e.g. 1.21.4. Leave as LATEST to always use the newest release.",
     label: "Minecraft version",
     placeholder: "LATEST",
     type: "string",
@@ -62,8 +61,7 @@ export const minecraftSettings = defineSettings({
   },
   serverType: {
     default: "PAPER",
-    help:
-      "Server software. Paper is recommended for plugins. Fabric/Forge for mods. Magma for both.",
+    help: "Server software. Paper is recommended for plugins. Fabric/Forge for mods. Magma for both.",
     label: "Server type",
     options: [
       { label: "Vanilla", value: "VANILLA" },

@@ -12,7 +12,7 @@ const yamlBlock = (lines: string[], indent = 10) =>
 
 export const buildRedmCompose = (
   config: ComposeConfig,
-  settings: RedmSettings,
+  settings: RedmSettings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

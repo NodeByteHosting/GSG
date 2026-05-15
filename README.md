@@ -1,6 +1,6 @@
 # NodeByte Game Recipes
 
-This directory contains game server configuration recipes think of them as templates or profiles for each supported game. Each recipe defines how to provision, configure, and run a specific game server.
+This directory contains game server configuration recipes think of them as templates or profiles for each supported game. Each recipe defines how to provision, configure, and run a specific game server!
 
 ## Structure
 

@@ -6,7 +6,7 @@ export const dockerImage = "lloesche/valheim-server:latest";
 
 export const buildValheimCompose = (
   config: ComposeConfig,
-  settings: ValheimSettings,
+  settings: ValheimSettings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

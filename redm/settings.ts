@@ -4,8 +4,7 @@ import type { SettingsValues } from "../settings";
 export const redmSettings = defineSettings({
   cfxVersion: {
     default: "latest",
-    help:
-      'CFX artifact version to install. Use "recommended", "latest", or a specific build ID such as "1383-e5ea0403". Find builds at runtime.fivem.net/artifacts/fivem/build_proot_linux/master/',
+    help: 'CFX artifact version to install. Use "recommended", "latest", or a specific build ID such as "1383-e5ea0403". Find builds at runtime.fivem.net/artifacts/fivem/build_proot_linux/master/',
     label: "CFX version",
     maxLength: 50,
     type: "string",
@@ -33,8 +32,7 @@ export const redmSettings = defineSettings({
   },
   steamWebApiKey: {
     default: "none",
-    help:
-      'Steam Web API key for player identification. Leave as "none" to disable. Get one at steamcommunity.com/dev/apikey.',
+    help: 'Steam Web API key for player identification. Leave as "none" to disable. Get one at steamcommunity.com/dev/apikey.',
     label: "Steam Web API key",
     type: "string",
   },
