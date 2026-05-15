@@ -6,7 +6,7 @@ export const dockerImage = "itzg/minecraft-server:latest";
 
 export const buildMinecraftCompose = (
   config: ComposeConfig,
-  settings: MinecraftSettings,
+  settings: MinecraftSettings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

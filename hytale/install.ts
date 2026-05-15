@@ -11,7 +11,7 @@ const QUERY_PORT = 25_566;
 
 export const buildHytaleCompose = (
   config: ComposeConfig,
-  settings: HytaleSettings,
+  settings: HytaleSettings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;
@@ -37,7 +37,7 @@ export const buildHytaleCompose = (
   serverArgs.push(
     `--auth-mode ${escape(settings.authMode)}`,
     "--assets Assets.zip",
-    `--bind 0.0.0.0:${GAME_PORT}`,
+    `--bind 0.0.0.0:${GAME_PORT}`
   );
 
   const command = [

@@ -6,7 +6,7 @@ export const dockerImage = "joedwards32/cs2:latest";
 
 export const buildCs2Compose = (
   config: ComposeConfig,
-  settings: Cs2Settings,
+  settings: Cs2Settings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

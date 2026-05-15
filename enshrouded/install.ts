@@ -6,7 +6,7 @@ export const dockerImage = "mornedhels/enshrouded-server:latest";
 
 export const buildEnshroudedCompose = (
   config: ComposeConfig,
-  settings: EnshroudedSettings,
+  settings: EnshroudedSettings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

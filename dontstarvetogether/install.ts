@@ -6,7 +6,7 @@ export const dockerImage = "webhippie/dst:latest";
 
 export const buildDontStarveTogetherCompose = (
   config: ComposeConfig,
-  settings: DontStarveTogetherSettings,
+  settings: DontStarveTogetherSettings
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;
