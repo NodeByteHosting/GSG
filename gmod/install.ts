@@ -6,7 +6,7 @@ export const dockerImage = "ich777/garrysmod:latest";
 
 export const buildGmodCompose = (
   config: ComposeConfig,
-  settings: GmodSettings
+  settings: GmodSettings,
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

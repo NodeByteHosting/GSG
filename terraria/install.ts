@@ -6,7 +6,7 @@ export const dockerImage = "ryshe/terraria:latest";
 
 export const buildTerrariaCompose = (
   config: ComposeConfig,
-  settings: TerrariaSettings
+  settings: TerrariaSettings,
 ): string => {
   const timezone = config.timezone ?? "UTC";
   const escape = escapeComposeValue;

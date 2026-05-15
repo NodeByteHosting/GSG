@@ -41,17 +41,13 @@ export type SettingField =
 export type SettingsSchema = Record<string, SettingField>;
 
 export type SettingsValues<S extends SettingsSchema> = {
-  [K in keyof S]: S[K] extends BooleanField
-    ? boolean
-    : S[K] extends NumberField
-      ? number
-      : S[K] extends SelectField<infer O>
-        ? O
-        : string;
+  [K in keyof S]: S[K] extends BooleanField ? boolean
+    : S[K] extends NumberField ? number
+    : S[K] extends SelectField<infer O> ? O
+    : string;
 };
 
-export const defineSettings = <S extends SettingsSchema>(schema: S): S =>
-  schema;
+export const defineSettings = <S extends SettingsSchema>(schema: S): S => schema;
 
 const validateField = (field: SettingField, value: unknown): boolean => {
   switch (field.type) {
@@ -92,7 +88,7 @@ const validateField = (field: SettingField, value: unknown): boolean => {
 };
 
 export const getDefaults = <S extends SettingsSchema>(
-  schema: S
+  schema: S,
 ): SettingsValues<S> => {
   const result: Record<string, unknown> = {};
   for (const [key, field] of Object.entries(schema)) {
@@ -103,7 +99,7 @@ export const getDefaults = <S extends SettingsSchema>(
 
 export const resolveSettings = <S extends SettingsSchema>(
   schema: S,
-  stored: unknown
+  stored: unknown,
 ): SettingsValues<S> => {
   const result = getDefaults(schema) as Record<string, unknown>;
   if (!stored || typeof stored !== "object" || Array.isArray(stored)) {
@@ -124,7 +120,7 @@ export type ValidateResult<S extends SettingsSchema> =
 
 export const validateSettings = <S extends SettingsSchema>(
   schema: S,
-  input: unknown
+  input: unknown,
 ): ValidateResult<S> => {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     return { error: "Settings must be an object", ok: false };
@@ -153,7 +149,7 @@ export const validateSettings = <S extends SettingsSchema>(
 
 export const missingRequiredFields = <S extends SettingsSchema>(
   schema: S,
-  values: Record<string, unknown>
+  values: Record<string, unknown>,
 ): string[] => {
   const missing: string[] = [];
   for (const [key, field] of Object.entries(schema)) {
@@ -169,5 +165,5 @@ export const missingRequiredFields = <S extends SettingsSchema>(
 
 export const hasRequiredFields = (schema: SettingsSchema): boolean =>
   Object.values(schema).some(
-    (field) => field.type === "string" && field.required === true
+    (field) => field.type === "string" && field.required === true,
   );
