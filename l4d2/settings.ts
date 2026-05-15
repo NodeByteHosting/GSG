@@ -55,7 +55,8 @@ export const l4d2Settings = defineSettings({
   },
   steamToken: {
     default: "",
-    help: "Steam Game Server Login Token (GSLT). Required for public servers — get one at steamcommunity.com/dev/managegameservers (App ID 222860).",
+    help:
+      "Steam Game Server Login Token (GSLT). Required for public servers — get one at steamcommunity.com/dev/managegameservers (App ID 222860).",
     label: "Steam GSLT",
     maxLength: 64,
     type: "string",

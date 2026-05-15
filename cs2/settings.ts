@@ -65,7 +65,8 @@ export const cs2Settings = defineSettings({
   },
   steamToken: {
     default: "",
-    help: "Steam Game Server Login Token (GSLT). Required for public servers — get one at steamcommunity.com/dev/managegameservers (App ID 730).",
+    help:
+      "Steam Game Server Login Token (GSLT). Required for public servers — get one at steamcommunity.com/dev/managegameservers (App ID 730).",
     label: "Steam GSLT",
     maxLength: 64,
     type: "string",
