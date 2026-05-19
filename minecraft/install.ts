@@ -9,7 +9,7 @@ export const dockerImage = {
   "Java 17": "ghcr.io/pterodactyl/yolks:java_17",
   "Java 16": "ghcr.io/pterodactyl/yolks:java_16",
   "Java 11": "ghcr.io/pterodactyl/yolks:java_11",
-  "Java 8": "ghcr.io/pterodactyl/yolks:java_8"
+  "Java 8": "ghcr.io/pterodactyl/yolks:java_8",
 };
 
 export const buildMinecraftCompose = (
