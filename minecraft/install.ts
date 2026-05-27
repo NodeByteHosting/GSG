@@ -2,16 +2,6 @@ import type { ComposeConfig } from "../compose";
 import { escapeComposeValue } from "../compose";
 import type { MinecraftSettings } from "./settings";
 
-export const dockerImage = {
-  "Java 25": "ghcr.io/pterodactyl/yolks:java_25",
-  "Java 22": "ghcr.io/pterodactyl/yolks:java_22",
-  "Java 21": "ghcr.io/pterodactyl/yolks:java_21",
-  "Java 17": "ghcr.io/pterodactyl/yolks:java_17",
-  "Java 16": "ghcr.io/pterodactyl/yolks:java_16",
-  "Java 11": "ghcr.io/pterodactyl/yolks:java_11",
-  "Java 8": "ghcr.io/pterodactyl/yolks:java_8",
-};
-
 export const buildMinecraftCompose = (
   config: ComposeConfig,
   settings: MinecraftSettings,
@@ -23,7 +13,7 @@ export const buildMinecraftCompose = (
 
   return `services:
   minecraft:
-    image: ${dockerImage}
+    image: ${settings.dockerImage}
     container_name: nodebyte-game
     ports:
       - "25565:25565"

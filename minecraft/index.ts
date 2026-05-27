@@ -1,6 +1,6 @@
 import type { ComposeConfig } from "../compose";
 import { resolveSettings } from "../settings";
-import { buildMinecraftCompose, dockerImage } from "./install";
+import { buildMinecraftCompose } from "./install";
 import { minecraftSettings } from "./settings";
 
 const buildCompose = (config: ComposeConfig, raw: unknown): string =>
@@ -9,7 +9,7 @@ const buildCompose = (config: ComposeConfig, raw: unknown): string =>
 export const minecraft = {
   buildCompose,
   description: "Minecraft is a sandbox game where you can build your own world.",
-  dockerImage,
+  dockerImage: minecraftSettings.dockerImage,
   enabled: true,
   gamedigId: "minecraft",
   id: "minecraft",
