@@ -9,6 +9,7 @@ const buildCompose = (config: ComposeConfig, raw: unknown): string =>
 export const minecraft = {
   buildCompose,
   description: "Minecraft is a sandbox game where you can build your own world.",
+  dockerImage: minecraftSettings.dockerImage,
   enabled: true,
   gamedigId: "minecraft",
   id: "minecraft",
