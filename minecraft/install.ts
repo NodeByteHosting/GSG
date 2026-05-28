@@ -15,7 +15,7 @@ export const buildMinecraftCompose = (
 
   return `services:
   minecraft:
-    image: ${dockerImage}
+    image: ${settings.dockerImage}
     container_name: nodebyte-game
     ports:
       - "25565:25565"
