@@ -2,17 +2,16 @@ import { defineSettings } from "../settings";
 import type { SettingsValues } from "../settings";
 
 export const minecraftSettings = defineSettings({
-  dockerImage: {
-    default: "ghcr.io/pterodactyl/yolks:java_25",
-    label: "Docker Image",
+  javaVersion: {
+    default: "25",
+    label: "Java Version",
     options: [
-      { value: "ghcr.io/pterodactyl/yolks:java_25" },
-      { value: "ghcr.io/pterodactyl/yolks:java_22" },
-      { value: "ghcr.io/pterodactyl/yolks:java_21" },
-      { value: "ghcr.io/pterodactyl/yolks:java_17" },
-      { value: "ghcr.io/pterodactyl/yolks:java_16" },
-      { value: "ghcr.io/pterodactyl/yolks:java_11" },
-      { value: "ghcr.io/pterodactyl/yolks:java_8" },
+      { value: "25" },
+      { value: "21" },
+      { value: "17" },
+      { value: "11" },
+      { value: "8" },
+
     ],
     type: "select",
   },

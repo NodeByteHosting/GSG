@@ -2,6 +2,8 @@ import type { ComposeConfig } from "../compose";
 import { escapeComposeValue } from "../compose";
 import type { MinecraftSettings } from "./settings";
 
+export const dockerImage = "ghcr.io/nodebytehosting/games:minecraft-latest"
+
 export const buildMinecraftCompose = (
   config: ComposeConfig,
   settings: MinecraftSettings,
@@ -13,7 +15,7 @@ export const buildMinecraftCompose = (
 
   return `services:
   minecraft:
-    image: ${settings.dockerImage}
+    image: ${dockerImage}
     container_name: nodebyte-game
     ports:
       - "25565:25565"
