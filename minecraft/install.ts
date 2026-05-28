@@ -2,7 +2,7 @@ import type { ComposeConfig } from "../compose";
 import { escapeComposeValue } from "../compose";
 import type { MinecraftSettings } from "./settings";
 
-export const dockerImage = "ghcr.io/nodebytehosting/games:minecraft-latest"
+export const dockerImage = "ghcr.io/nodebytehosting/games:minecraft-dev";
 
 export const buildMinecraftCompose = (
   config: ComposeConfig,
@@ -23,6 +23,7 @@ export const buildMinecraftCompose = (
       EULA: "TRUE"
       TYPE: "${type}"
       VERSION: "${version}"
+      JAVA_VERSION: "${settings.javaVersion}"
       SERVER_NAME: "${escape(config.name)}"
       MOTD: "${escape(config.name)} - Powered by NodeByte"
       DIFFICULTY: "${settings.difficulty}"

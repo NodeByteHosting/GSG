@@ -7,11 +7,12 @@ export const minecraftSettings = defineSettings({
     label: "Java Version",
     options: [
       { value: "25" },
+      { value: "22" },
       { value: "21" },
       { value: "17" },
+      { value: "16" },
       { value: "11" },
       { value: "8" },
-
     ],
     type: "select",
   },
