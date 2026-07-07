@@ -41,7 +41,7 @@ export const buildMinecraftCompose = (
       PVP: "${settings.pvp}"
       VIEW_DISTANCE: "${settings.viewDistance}"
     volumes:
-      - /var/lib/nodebyte/game/data:/data
+      - /var/lib/nodebyte/game/data:/var/lib/nodebyte/game/data
     restart: unless-stopped
 `;
   // Note: CurseForge packs require CURSEFORGE_FILES or CF_API_KEY env vars.
