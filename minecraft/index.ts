@@ -32,7 +32,7 @@ export const minecraft = {
   requirements: {
     cpu: 2,
     disk: 10,
-    memory: 8,
+    memory: 2,
   },
   settings: minecraftSettings,
   usesJoinPassword: false,
