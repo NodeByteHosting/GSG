@@ -30,7 +30,7 @@ export const minecraft = {
     },
   ],
   requirements: {
-    cpu: 2,
+    cpu: 1,
     disk: 10,
     memory: 2,
   },
